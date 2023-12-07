@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { Default } from './Layouts/Default'
+import { AppRoutes } from './AppRoutes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Default />
+    <AppRoutes />
   </React.StrictMode>,
 )

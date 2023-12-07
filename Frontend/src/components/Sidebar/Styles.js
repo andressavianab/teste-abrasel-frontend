@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 const showSidebar = keyframes`
@@ -9,7 +10,7 @@ const showSidebar = keyframes`
       opacity: 1;
       width: 100%;
     }
-`
+`;
 
 const fadeInMenu = keyframes`
   from {
@@ -32,7 +33,7 @@ export const Nav = styled.nav`
   margin: 10px;
 `;
 
-export const Menu = styled.div`
+export const Link = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -53,7 +54,15 @@ export const Menu = styled.div`
   &:nth-child(5) {
     animation-delay: 0.7s;
   }
-  `;
+  
+  text-decoration: none;
+  color: black;
+
+  &.${(props) => props.active} {
+    background-color: #fafafa;
+    font-weight: bold;
+  } 
+`;
 
 export const Choose = styled.div`
   padding-left: 20px;
@@ -61,4 +70,4 @@ export const Choose = styled.div`
   padding-bottom: 20px;
   font-weight: bold;
   animation: ${fadeInMenu} 0.5s ease-in-out forwards;
-`
+`;

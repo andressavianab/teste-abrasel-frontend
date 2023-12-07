@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Layout, Content, ContentWrapper, ArrowIcon } from "./Styles.js";
 import { Sidebar } from "../components/Sidebar/Index";
 import Arrow from "../assets/arrow.svg";
+import { Outlet } from "react-router-dom";
 
 
 export const Default = () => {
@@ -18,7 +19,7 @@ export const Default = () => {
 
         <Content sidebarOpen={sidebarOpen}>
           <ContentWrapper>
-            <h1>hello</h1>
+            <Outlet />
           </ContentWrapper>
           <ArrowIcon sidebarOpen={sidebarOpen} onClick={toggleSidebar}>
             <img src={Arrow} alt="" />

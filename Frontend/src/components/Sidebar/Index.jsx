@@ -1,4 +1,4 @@
-import { Choose, Menu, Nav } from "./Styles";
+import { Choose, Nav, Link } from "./Styles";
 import math from "../../assets/math-operations.svg";
 import shoppingCart from '../../assets/shopping-cart.svg'
 import car from '../../assets/car.svg'
@@ -10,22 +10,22 @@ export const Sidebar = () => {
       <Choose>
         <p>Escolha um Desafio</p>
       </Choose>
-      <Menu>
+      <Link>
         <img src={math} alt="" />
         <p>Polindromos</p>
-      </Menu>
-      <Menu>
+      </Link>
+      <Link>
         <img src={shoppingCart} alt="" />
         <p>Caixa</p>
-      </Menu>
-      <Menu>
+      </Link>
+      <Link>
         <img src={car} alt="" />
         <p>Veículos</p>
-      </Menu>
-      <Menu>
+      </Link>
+      <Link exact to="/cep" active="active"> 
         <img src={mapPin} alt="" />
         <p>CEP</p>
-      </Menu>
+      </Link>
     </Nav>
   );
 };
