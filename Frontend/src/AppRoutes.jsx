@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Default } from "./Layouts/Default";
-import { Ceps } from "./Ceps";
+import { Ceps } from "./pages/Cep/Index";
 
 export const AppRoutes = () => {
   return (

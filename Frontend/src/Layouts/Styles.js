@@ -17,7 +17,6 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  border-right: 1px solid #ebeef0;
 `;
 
 export const ArrowIcon = styled.span`
