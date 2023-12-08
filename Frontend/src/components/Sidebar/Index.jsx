@@ -10,9 +10,9 @@ export const Sidebar = () => {
       <Choose>
         <p>Escolha um Desafio</p>
       </Choose>
-      <Link>
+      <Link exact to="/palindromos" active="active">
         <img src={math} alt="" />
-        <p>Polindromos</p>
+        <p>Palíndromos</p>
       </Link>
       <Link>
         <img src={shoppingCart} alt="" />
