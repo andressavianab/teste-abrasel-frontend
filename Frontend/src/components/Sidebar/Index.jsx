@@ -14,7 +14,7 @@ export const Sidebar = () => {
         <img src={math} alt="" />
         <p>Palíndromos</p>
       </Link>
-      <Link>
+      <Link exact to="/caixa" active="active">
         <img src={shoppingCart} alt="" />
         <p>Caixa</p>
       </Link>

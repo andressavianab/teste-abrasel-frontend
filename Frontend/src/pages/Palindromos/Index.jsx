@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Content, Form, Input, Main, Title } from "./Styles";
 import { CardNumber } from "../../components/CardNumber/Index";
 
-export const Palindromos = () => {
+export const Palindromes = () => {
   const [values, setValues] = useState({
     start: 0,
     end: 0,
