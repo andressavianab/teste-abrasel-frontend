@@ -18,7 +18,7 @@ export const Sidebar = () => {
         <img src={shoppingCart} alt="" />
         <p>Caixa</p>
       </Link>
-      <Link>
+      <Link exact to="/veiculo" active="active">
         <img src={car} alt="" />
         <p>Veículos</p>
       </Link>

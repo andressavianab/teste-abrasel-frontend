@@ -1,20 +1,7 @@
 import { useState } from "react";
-import { Button, Card, Form, Input, Main, Title } from "./Styles";
+import { Button, Card, Form, Input, Main, Title, CloseButton, Texts } from "./Styles";
 import xCircle from "../../assets/x-circle.svg";
-import styled from "styled-components";
 
-export const Texts = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
-export const CloseButton = styled.button`
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  border: none;
-`;
 
 export const Cashier = () => {
   const [data, setData] = useState({

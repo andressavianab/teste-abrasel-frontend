@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const Main = styled.main`
   width: 100%;
@@ -38,18 +38,9 @@ export const Form = styled.form`
   margin-bottom: 1rem;
 `;
 
-export const Div = styled.div`
-  max-width: 30.75rem;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-`;
-
 export const Input = styled.input`
   font-family: "Manrope", sans-serif;
-  max-width: 15.75rem;
+ width: 15.75rem;
   height: 3.25rem;
   border-radius: 13px;
   font-size: 1rem;
