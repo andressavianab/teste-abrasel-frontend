@@ -8,7 +8,7 @@ const showSidebar = keyframes`
     }
     to {
       opacity: 1;
-      width: 100%;
+      width: 300px;
     }
 `;
 
@@ -26,11 +26,27 @@ const fadeInMenu = keyframes`
 export const Nav = styled.nav`
   width: 300px;
   height: 98vh;
-  background-color: #f0f0f0;
   animation: ${showSidebar} 0.5s;
 
   border-radius: 10px;
   margin: 10px;
+  position: fixed;
+
+  transition: background-color 0.5s ease;
+  background-color: ${({ route }) => {
+    switch (route) {
+      case "/cep":
+        return "#fafafb";
+      case "/palindromos":
+        return "#7fe684";
+      case "/caixa":
+        return "#b7e2c6";
+      case "/veiculo":
+        return "#f6f2e6";
+      default:
+        return "white";
+    }
+  }}
 `;
 
 export const Link = styled(NavLink)`
@@ -54,14 +70,14 @@ export const Link = styled(NavLink)`
   &:nth-child(5) {
     animation-delay: 0.7s;
   }
-  
+
   text-decoration: none;
   color: black;
 
   &.${(props) => props.active} {
-    background-color: #fafafa;
+    background-color: ${(props) => props.activeColor};
     font-weight: bold;
-  } 
+  }
 `;
 
 export const Choose = styled.div`

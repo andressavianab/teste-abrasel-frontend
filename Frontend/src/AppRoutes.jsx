@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Default } from "./Layouts/Default";
 import { Ceps } from "./pages/Cep/Index";
 import { Palindromes } from "./pages/Palindromos/Index";
@@ -10,6 +10,7 @@ export const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Default />}>
+          <Route path="/" element={<Navigate to="/palindromos" />} />
           <Route path="/cep" element={<Ceps />} />
           <Route path="/palindromos" element={<Palindromes />} />
           <Route path="/caixa" element={<Cashier />} />

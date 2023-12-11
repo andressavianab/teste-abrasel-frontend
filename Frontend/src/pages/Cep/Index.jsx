@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Div, Input, Main, Form, Title } from "./Styles";
+import { Button, Div, Input, Form, Title } from "./Styles";
 import axios from "axios";
 import { Map } from "../../components/Map/Index";
 
@@ -80,7 +80,7 @@ export const Ceps = () => {
   };
 
   return (
-    <Main>
+    <main>
       <div style={{ width: "100%" }}>
         <Map coordinates={showMarkers ? coordinates : []} />
       </div>
@@ -128,6 +128,6 @@ export const Ceps = () => {
           <Button>enviar</Button>
         </Div>
       </Form>
-    </Main>
+    </main>
   );
 };

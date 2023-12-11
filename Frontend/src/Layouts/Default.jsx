@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Layout, Content, ContentWrapper, ArrowIcon } from "./Styles.js";
 import { Sidebar } from "../components/Sidebar/Index";
 import Arrow from "../assets/arrow.svg";
-import { Outlet } from "react-router-dom";
-
+import { Outlet, useLocation } from "react-router-dom";
 
 export const Default = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const routes = useLocation();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -14,8 +14,8 @@ export const Default = () => {
 
   return (
     <>
-      <Layout sidebarOpen={sidebarOpen}>
-        {sidebarOpen && <Sidebar />}
+      <Layout sidebarOpen={sidebarOpen} route={routes.pathname} >
+        {sidebarOpen && <Sidebar route={routes.pathname} />}
 
         <Content sidebarOpen={sidebarOpen}>
           <ContentWrapper>

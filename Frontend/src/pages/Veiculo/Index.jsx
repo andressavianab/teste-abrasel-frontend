@@ -1,15 +1,6 @@
 import xCircle from "../../assets/x-circle.svg";
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  CloseButton,
-  Form,
-  Input,
-  Main,
-  Texts,
-  Title,
-} from "./Styles";
+import { Button, Card, CloseButton, Form, Input, Texts, Title } from "./Styles";
 import { Car, Motorcycle } from "./Veiculo";
 
 export const Vehicle = () => {
@@ -23,6 +14,7 @@ export const Vehicle = () => {
   });
   const [vehicleType, setVehicleType] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showCard, setShowCard] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +29,6 @@ export const Vehicle = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let newVehicle;
-
     if (
       !vehicleData.model ||
       !vehicleData.yearManufacture ||
@@ -47,47 +37,63 @@ export const Vehicle = () => {
       !vehicleData.wheels
     ) {
       setErrorMessage("Por favor, preencha todos os campos!");
+      return;
     }
 
-    if (
-      (vehicleData.numberDoors === "0" && vehicleData.wheels >= "3") ||
-      (vehicleData.numberDoors >= 1 && vehicleData.wheels > 2)
-    ) {
-      setErrorMessage("Veículo inválido!");
-    }
-
-    try {
-      if (vehicleData.wheels === "2" && vehicleData.numberDoors === "0") {
-        newVehicle = new Motorcycle(
-          vehicleData.model,
-          vehicleData.yearManufacture,
-          vehicleData.brand,
-          vehicleData.passengers
-        );
-        setVehicleType("Moto");
+    if (vehicleData.wheels === "2") {
+      if (vehicleData.numberDoors !== "0" || vehicleData.numberDoors > "2") {
+        setErrorMessage("Moto inválida!");
         return;
       }
 
-      if (vehicleData.numberDoors >= 1 && vehicleData.numberDoors <= 4) {
-        newVehicle = new Car(
+      try {
+        const newVehicle = new Motorcycle(
+          vehicleData.model,
+          vehicleData.yearManufacture,
+          vehicleData.brand
+        );
+        setVehicleType("Moto");
+        setVehicleData(newVehicle);
+        setShowCard(true);
+      } catch (error) {
+        console.error(error);
+      }
+    } else if (
+      vehicleData.wheels === "4" &&
+      vehicleData.numberDoors >= "1" &&
+      vehicleData.numberDoors <= "4"
+    ) {
+      try {
+        const newVehicle = new Car(
           vehicleData.model,
           vehicleData.yearManufacture,
           vehicleData.numberDoors,
           vehicleData.brand
         );
         setVehicleType("Carro");
-        return;
+        setVehicleData(newVehicle);
+        setShowCard(true);
+      } catch (error) {
+        console.error(error);
       }
-
-      const jsonData = JSON.stringify(newVehicle);
-      setVehicleData([...vehicleData, jsonData]);
-    } catch (error) {
-      console.log(error);
+    } else {
+      setErrorMessage("Veículo inválido!");
     }
   };
 
+  const handleClick = () => {
+    setVehicleData({
+      model: "",
+      yearManufacture: "",
+      numberDoors: "",
+      brand: "",
+      wheels: "",
+    });
+    setShowCard(false);
+  };
+
   return (
-    <Main>
+    <main>
       <Title>
         <h1>Preencha as informações sobre o seu veículo</h1>
       </Title>
@@ -133,17 +139,19 @@ export const Vehicle = () => {
         <Button>Enviar informações</Button>
         {errorMessage && <p>{errorMessage}</p>}
       </Form>
-      <Card>
-        <Texts>
-          <p>Tipo de veículo: {vehicleType} </p>
-          <p>Modelo: {vehicleData.model} </p>
-          <p>Ano de fabricação: {vehicleData.yearManufacture} </p>
-          <p>Marca: {vehicleData.brand} </p>
-        </Texts>
-        <CloseButton>
-          <img src={xCircle} alt="" />
-        </CloseButton>
-      </Card>
-    </Main>
+      {showCard && (
+        <Card>
+          <Texts>
+            <p>Tipo de veículo: {vehicleType} </p>
+            <p>Modelo: {vehicleData.model} </p>
+            <p>Ano de fabricação: {vehicleData.yearManufacture} </p>
+            <p>Marca: {vehicleData.brand} </p>
+          </Texts>
+          <CloseButton onClick={() => handleClick()}>
+            <img src={xCircle} alt="" />
+          </CloseButton>
+        </Card>
+      )}
+    </main>
   );
 };

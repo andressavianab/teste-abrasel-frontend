@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Content, Form, Input, Main, Title } from "./Styles";
+import { Button, Content, Form, Input, Title } from "./Styles";
 import { CardNumber } from "../../components/CardNumber/Index";
 
 export const Palindromes = () => {
@@ -8,6 +8,7 @@ export const Palindromes = () => {
     end: 0,
     palindromes: [],
   });
+  const [errorMessage, setErrorMessage] = useState();
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -15,6 +16,7 @@ export const Palindromes = () => {
       ...values,
       [name]: value,
     });
+    setErrorMessage("")
   };
 
   const findPalindromes = () => {
@@ -36,11 +38,16 @@ export const Palindromes = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(values.start == "" && values.end == "") {
+      setErrorMessage("Por favor, preencha todos os campos!")
+    }
+
     findPalindromes();
   };
 
   return (
-    <Main>
+    <main>
       <Title>
         <h1>
           Especifique um intervalo de dois números para mostrar os palíndromos
@@ -64,6 +71,7 @@ export const Palindromes = () => {
           placeholder="fim do intervalo"
           type="number"
         ></Input>
+        {errorMessage && <p>{errorMessage}</p>}
         <Button>Achar Palíndromos</Button>
       </Form>
       <Content>
@@ -71,6 +79,6 @@ export const Palindromes = () => {
           <CardNumber key={index} number={num} />
         ))}
       </Content>
-    </Main>
+    </main>
   );
 };
